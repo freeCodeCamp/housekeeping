@@ -1,0 +1,4 @@
+housekeeping.freecodecamp.org {
+  tls internal
+  reverse_proxy semaphore_semaphore_1:3000
+}

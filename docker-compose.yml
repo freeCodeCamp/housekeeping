@@ -1,0 +1,62 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+    driver: bridge
+  
+services:
+
+  mysql:
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    networks:
+      - internal
+    image: mysql:5.6
+    hostname: mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: semaphore
+      MYSQL_USER: semaphore
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  semaphore:
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    image: ansiblesemaphore/semaphore:latest
+    networks:
+      - internal
+    environment:
+      SEMAPHORE_DB_USER: semaphore
+      SEMAPHORE_DB_PASS: ${MYSQL_PASSWORD}
+      SEMAPHORE_DB_HOST: mysql
+      SEMAPHORE_DB_PORT: 3306
+      SEMAPHORE_DB: semaphore
+      SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/
+      SEMAPHORE_ADMIN_PASSWORD: ${SEMAPHORE_ADMIN_PASSWORD}
+      SEMAPHORE_ADMIN_NAME: ${SEMAPHORE_ADMIN_NAME}
+      SEMAPHORE_ADMIN_EMAIL: ${SEMAPHORE_ADMIN_EMAIL}
+      SEMAPHORE_ADMIN: ${SEMAPHORE_ADMIN}
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: ${SEMAPHORE_ACCESS_KEY_ENCRYPTION}
+    depends_on:
+      - mysql
+
+  caddy:
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    image: caddy:latest
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/caddy_data:/data
+      - $PWD/caddy_config:/config
+    networks:
+      - web
+      - internal
+    depends_on:
+      - semaphore
