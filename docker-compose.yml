@@ -83,6 +83,8 @@ services:
         RUNDECK_GRAILS_URL: ${RUNDECK_GRAILS_URL}
         RUNDECK_SERVER_FORWARDED: true
         RUNDECK_SERVER_CONTEXTPATH: '/rundeck'
+    volumes:
+      - $PWD/rundeck/config:/home/rundeck/server/config
     depends_on:
       - postgres
   
