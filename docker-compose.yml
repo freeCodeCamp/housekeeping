@@ -6,7 +6,10 @@ networks:
   internal:
     external: false
     driver: bridge
-  
+
+volumes:
+    dbdata:
+
 services:
 
   mysql:
@@ -23,13 +26,28 @@ services:
       MYSQL_DATABASE: semaphore
       MYSQL_USER: semaphore
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: unless-stopped
+    networks:
+      - internal
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=rundeck
+      - POSTGRES_USER=rundeck
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
 
   semaphore:
     image: ansiblesemaphore/semaphore:latest
     container_name: semaphore
+    restart: unless-stopped
     networks:
       - internal
-    restart: unless-stopped
     ports:
       - 3000:3000
     environment:
@@ -47,6 +65,27 @@ services:
     depends_on:
       - mysql
 
+  rundeck:
+    image: rundeck/rundeck:4.2.1
+    container_name: rundeck
+    restart: unless-stopped
+    networks:
+      - internal
+    ports:
+      - 4440:4440
+    links:
+      - postgres
+    environment:
+        RUNDECK_DATABASE_DRIVER: org.postgresql.Driver
+        RUNDECK_DATABASE_USERNAME: rundeck
+        RUNDECK_DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+        RUNDECK_DATABASE_URL: jdbc:postgresql://postgres/rundeck?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+        RUNDECK_GRAILS_URL: ${RUNDECK_GRAILS_URL}
+        RUNDECK_SERVER_FORWARDED: true
+        RUNDECK_SERVER_CONTEXTPATH: '/rundeck'
+    depends_on:
+      - postgres
+  
   caddy:
     image: caddy:latest
     container_name: caddy
@@ -55,9 +94,10 @@ services:
       - web
       - internal
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
       - $PWD/Caddyfile:/etc/caddy/Caddyfile
     depends_on:
       - semaphore
+      - rundeck

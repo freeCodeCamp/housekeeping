@@ -1,4 +1,11 @@
 housekeeping.freecodecamp.org {
-  tls internal
-  reverse_proxy semaphore:3000
+  tls internal 
+
+  reverse_proxy /semaphore/* semaphore:3000
+  
+  reverse_proxy /rundeck/* rundeck:4440
+
+  redir / /rundeck/
+  redir /semaphore /semaphore/
+  redir /rundeck /rundeck/
 }
