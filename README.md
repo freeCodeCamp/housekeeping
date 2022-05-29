@@ -9,9 +9,11 @@ Usage:
 
 1. Create a `.env` from the `sample.env`.
 2. Replace the keys with the required values.
-3. Configure the DNS records as required.
-4. Set up the UFW firewall to allow access to the port 443.
-5. Run the services
+3. Create the ssh-keys for the Docker containers.
+4. Configure the DNS records as required.
+5. Set up the UFW firewall to allow access to `ssh`.
+6. Create the `web` network with `docker network create web`.
+7. Run the services
 
    ```console
    docker-compose config

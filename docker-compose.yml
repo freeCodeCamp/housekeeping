@@ -28,7 +28,10 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
   
   rundeck:
-    image: rundeck/rundeck:4.2.1
+    build:
+      context: .
+      args:
+        RUNDECK_IMAGE: rundeck/rundeck:4.2.1
     container_name: rundeck
     restart: unless-stopped
     networks:
@@ -46,6 +49,7 @@ services:
         RUNDECK_SERVER_FORWARDED: true
     volumes:
       - $PWD/rundeck/config:/home/rundeck/server/config
+      - $PWD/ansible:/etc/ansible
     depends_on:
       - mysql
   
