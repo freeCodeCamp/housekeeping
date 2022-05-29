@@ -10,7 +10,7 @@
         clone: no
         update: yes
         single_branch: yes
-        version: master
+        version: main
 
 # WARNING: 
 # DO NOT ADD AUTOMATION TO RESTART / RELOAD Config via Playbooks here. 
