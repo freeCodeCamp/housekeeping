@@ -4,6 +4,15 @@
   serial: 1
   gather_facts: false
   tasks:
+    - name: Update Git Repository
+      git:
+        name: https://github.com/freeCodeCamp/chat-config.git
+        dest: /home/freecodecamp/chat
+        clone: no
+        update: yes
+        single_branch: yes
+        version: main
+
     - name: pull latest image
       command:
         cmd: docker-compose pull
