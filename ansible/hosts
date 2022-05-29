@@ -13,13 +13,13 @@ a.chn.web.pubdns.freecodecamp.org
 
 [prd_client]
 [a:b].eng.client.pubdns.freecodecamp.org
-[a:b]cnt.client.pubdns.freecodecamp.org
-[a:b]chn.client.pubdns.freecodecamp.org
-[a:b]esp.client.pubdns.freecodecamp.org
-[a:b]ita.client.pubdns.freecodecamp.org
-[a:b]por.client.pubdns.freecodecamp.org
-[a:b]jpn.client.pubdns.freecodecamp.org
-[a:b]ukr.client.pubdns.freecodecamp.org
+[a:b].cnt.client.pubdns.freecodecamp.org
+[a:b].chn.client.pubdns.freecodecamp.org
+[a:b].esp.client.pubdns.freecodecamp.org
+[a:b].ita.client.pubdns.freecodecamp.org
+[a:b].por.client.pubdns.freecodecamp.org
+[a:b].jpn.client.pubdns.freecodecamp.org
+[a:b].ukr.client.pubdns.freecodecamp.org
 
 [prd_ghost]
 a.eng.ghost.pubdns.freecodecamp.org
