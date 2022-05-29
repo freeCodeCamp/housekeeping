@@ -70,5 +70,8 @@ stg_api
 stg_client
 stg_ghost
 
+[ops_housekeeping]
+housekeeping.pubdns.do.freecodecamp.org
+
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
