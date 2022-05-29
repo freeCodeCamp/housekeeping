@@ -1,0 +1,17 @@
+---
+- name: Git Update
+  hosts: "{{ variable_host | default('ops_housekeeping') }}"
+
+  tasks:
+    - name: Update Git Repository
+      git:
+        name: https://github.com/freeCodeCamp/housekeeping.git
+        dest: /home/freecodecamp/housekeeping
+        clone: no
+        update: yes
+        single_branch: yes
+        version: master
+
+# WARNING: 
+# DO NOT ADD AUTOMATION TO RESTART / RELOAD Config via Playbooks here. 
+# Rundeck will restart and you will lose progress
