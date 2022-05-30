@@ -1,5 +1,8 @@
-⚠️ WARNING ⚠️ - These steps are quick notes that @raiseadead has taken. These
-should be documented properly in the staff-wiki.
+> **⚠️ WARNING ⚠️:**
+>
+> These steps are quick notes that [@raiseadead](https://github.com/raisedadead)
+> has taken while getting this to work. These should be documented properly in
+> the [staff-wiki](https://staff-wiki.freecodecamp.org).
 
 Installing rundeck and ansible:
 

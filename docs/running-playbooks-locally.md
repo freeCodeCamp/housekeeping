@@ -1,5 +1,11 @@
-> Our Ansible configuration and documentation for housekeeping on some of our
-> instances. Study the hosts and the playbooks to run commands as shown below.
+> **⚠️ WARNING ⚠️:**
+>
+> These steps are quick notes that [@raiseadead](https://github.com/raisedadead)
+> has taken while getting this to work. These should be documented properly in
+> the [staff-wiki](https://staff-wiki.freecodecamp.org).
+
+Our Ansible configuration and documentation for housekeeping on some of our
+instances. Study the hosts and the playbooks to run commands as shown below.
 
 You can use standard Ansible syntax to execute tasks using commands. Some
 examples are:
