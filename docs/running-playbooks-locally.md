@@ -7,6 +7,10 @@
 Our Ansible configuration and documentation for housekeeping on some of our
 instances. Study the hosts and the playbooks to run commands as shown below.
 
+Note that these playbooks can be run from your local machine as long as you have
+access to the remote nodes and the SSH key. You will also need
+[ansible](https://docs.ansible.com) installed on your machine.
+
 You can use standard Ansible syntax to execute tasks using commands. Some
 examples are:
 
