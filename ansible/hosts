@@ -73,5 +73,8 @@ stg_ghost
 [ops_housekeeping]
 housekeeping.pubdns.do.freecodecamp.org
 
+[ops:children]
+ops_housekeeping
+
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
