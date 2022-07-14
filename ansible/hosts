@@ -6,7 +6,6 @@ a.chn.web.pubdns.freecodecamp.org
 
 [prd_nginx]
 [a:b].www.web.pubdns.freecodecamp.org
-[a:b].chat.web.pubdns.freecodecamp.org
 
 [prd_api]
 [a:j].api.pubdns.freecodecamp.org
@@ -34,7 +33,7 @@ a.ben.ghost.pubdns.freecodecamp.org
 a.urd.ghost.pubdns.freecodecamp.org
 
 [prd_chat]
-[a:b].chat.pubdns.freecodecamp.org
+chat.pubdns.do.freecodecamp.org
 
 [prd:children]
 prd_demo
