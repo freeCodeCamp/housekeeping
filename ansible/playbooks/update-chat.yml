@@ -6,7 +6,7 @@
   tasks:
     - name: Update Git Repository
       git:
-        name: https://github.com/freeCodeCamp/chat-config.git
+        name: https://github.com/freeCodeCamp/chat.git
         dest: /home/freecodecamp/chat
         clone: no
         update: yes
